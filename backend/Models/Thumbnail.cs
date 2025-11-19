@@ -6,9 +6,6 @@ namespace backend.Models
 {
     public class Thumbnail
     {
-        [JsonPropertyName("lqip")]
-        public string Lqip { get; set; }
-
         [JsonPropertyName("width")]
         public int Width { get; set; }
 

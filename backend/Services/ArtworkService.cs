@@ -27,6 +27,12 @@ public class ArtworkService : IArtworkService
         if (deserialized == null || deserialized.Data == null)
             throw new Exception("Failed to deserialize artwork data");
 
+
+        foreach (var artwork in deserialized.Data)
+        {
+            artwork.Config = deserialized.Config;
+        }
+
         return deserialized.Data.OrderBy(a => a.Id).ToList();
     }
 }

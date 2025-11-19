@@ -30,5 +30,21 @@ namespace backend.Models
 
         [JsonPropertyName("thumbnail")]
         public Thumbnail Thumbnail { get; set; }
+
+        [JsonPropertyName("image_id")]
+        public string Image_Id { get; set; }
+
+        public Config Config { get; set; }
+
+        public string ImageUrl()
+        {
+            string width = Thumbnail?.Width.ToString() ?? "full";
+            
+            return $"{Config.iiif_url}/{Image_Id}/full/{width},/0/default.jpg";
+        }
+        public string ImageAltText()
+        {
+            return Thumbnail?.Alt_Text ?? "No description available";
+        }
     }
 }

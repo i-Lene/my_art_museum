@@ -11,6 +11,10 @@ namespace backend.Models
 
         [JsonPropertyName("data")]
         public List<ArtworkData> Data { get; set; }
+
+        [JsonPropertyName("config")]
+        public Config Config { get; set; }
+
     }
 
 }
