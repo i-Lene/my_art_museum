@@ -1,4 +1,5 @@
 using System.Text.Json.Serialization;
+using System.Web;
 
 
 namespace backend.Models
@@ -39,7 +40,7 @@ namespace backend.Models
         public string ImageUrl()
         {
             string width = Thumbnail?.Width.ToString() ?? "full";
-            
+
             return $"{Config.iiif_url}/{Image_Id}/full/{width},/0/default.jpg";
         }
         public string ImageAltText()
