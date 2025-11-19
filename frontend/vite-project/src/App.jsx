@@ -1,19 +1,24 @@
 import { useState, useEffect } from "react";
 
+import "./App.scss";
+
 function App() {
-  const [message, setMessage] = useState("");
+  const [museumData, setMuseumData] = useState(null);
 
   useEffect(() => {
-    fetch("http://localhost:5186/api/hello")
+    fetch("http://localhost:5186/api/museumdata")
       .then((res) => res.json())
-      .then((data) => setMessage(data.message));
+      .then((data) => setMuseumData(data))
+      .catch((error) => console.error("Error fetching museum data:", error));
   }, []);
+
+
+  console.log(museumData);
 
 
   return (
     <div>
-      <h1>React + .NET App</h1>
-      <p>{message}</p>
+
     </div>
   );
 }

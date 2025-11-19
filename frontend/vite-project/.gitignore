@@ -1,3 +1,6 @@
+# =====================
+# Node / JS
+# =====================
 # Logs
 logs
 *.log
@@ -7,18 +10,49 @@ yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
 
-node_modules
-dist
-dist-ssr
+# Dependencies
+node_modules/
+
+# Build output
+dist/
+dist-ssr/
+build/
 *.local
 
-# Editor directories and files
+# =====================
+# C# / .NET
+# =====================
+# Build Folders
+bin/
+obj/
+out/
+
+# User-specific files
+*.user
+*.userosscache
+*.suo
+*.sln.docstates
+
+# Rider / VS Code
 .vscode/*
 !.vscode/extensions.json
-.idea
-.DS_Store
-*.suo
-*.ntvs*
-*.njsproj
-*.sln
+.idea/
 *.sw?
+
+# OS generated files
+.DS_Store
+
+# Env / config files
+appsettings.Development.json
+.env
+
+# =====================
+# Optional
+# =====================
+# JetBrains Rider
+.idea/
+*.sln.iml
+
+# Temporary files
+*.tmp
+*.temp
