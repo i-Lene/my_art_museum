@@ -1,6 +1,4 @@
 using System.Text.Json.Serialization;
-using System.Web;
-
 
 namespace backend.Models
 {
@@ -23,6 +21,7 @@ namespace backend.Models
 
         [JsonPropertyName("date_display")]
         public string Date_Display { get; set; }
+
         [JsonPropertyName("artist_titles")]
         public List<string> Artist_Titles { get; set; }
 
@@ -35,17 +34,16 @@ namespace backend.Models
         [JsonPropertyName("image_id")]
         public string Image_Id { get; set; }
 
+        public string Full_Img_Url =>
+            !string.IsNullOrWhiteSpace(Image_Id) && Config != null
+                ? $"{Config.iiif_url}/{Image_Id}/full/max/0/default.jpg"
+                : "https://placehold.co/600x400?text=No+Image+Available";
+
+
+        public string Alt_Text =>
+            Thumbnail?.Alt_Text ?? "No description available";
+
+        [JsonIgnore]
         public Config Config { get; set; }
-
-        public string ImageUrl()
-        {
-            string width = Thumbnail?.Width.ToString() ?? "full";
-
-            return $"{Config.iiif_url}/{Image_Id}/full/{width},/0/default.jpg";
-        }
-        public string ImageAltText()
-        {
-            return Thumbnail?.Alt_Text ?? "No description available";
-        }
     }
 }

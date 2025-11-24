@@ -14,7 +14,6 @@ namespace backend.Models
 
         [JsonPropertyName("config")]
         public Config Config { get; set; }
-
     }
 
 }

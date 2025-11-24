@@ -1,5 +1,6 @@
 
 
+using System.Text.Json;
 using System.Text.Json.Serialization;
 
 namespace backend.Models
@@ -23,6 +24,9 @@ namespace backend.Models
 
         [JsonPropertyName("next_url")]
         public string Next_Url { get; set; }
+
+        [JsonPropertyName("prev_url")]
+        public string Prev_Url { get; set; }
     }
 
 }

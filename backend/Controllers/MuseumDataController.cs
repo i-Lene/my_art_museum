@@ -18,11 +18,13 @@ namespace backend.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetArtWorks([FromQuery] int limit = 3)
+        public async Task<IActionResult> GetArtWorks(
+            [FromQuery] int page = 1,
+            [FromQuery] int limit = 10)
         {
             try
             {
-                var artworks = await _artworkService.GetArtworksAsync(limit);
+                var artworks = await _artworkService.GetArtworksAsync(page, limit);
                 return Ok(artworks);
             }
             catch (Exception ex)
@@ -30,6 +32,36 @@ namespace backend.Controllers
                 return StatusCode(500, $"Internal server error: {ex.Message}");
             }
         }
+
+        [HttpGet("search")]
+        public async Task<IActionResult> SearchArtworks([FromQuery] string q, [FromQuery] int page = 1, [FromQuery] int limit = 100)
+        {
+            try
+            {
+                var artworks = await _artworkService.SearchArtworksAsync(q, page, limit);
+                return Ok(artworks);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, $"Internal server error: {ex.Message}");
+            }
+        }
+
+        [HttpGet("{id}")]
+        public async Task<IActionResult> GetArtWorkById(
+            [FromRoute] int id, [FromQuery] int page = 1, [FromQuery] int limit = 10)
+        {
+            try
+            {
+                var artworks = await _artworkService.GetArtworkAsync(id, page, limit);
+                return Ok(artworks);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, $"Internal server error: {ex.Message}");
+            }
+        }
+
     }
 
 }
