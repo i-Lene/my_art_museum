@@ -23,10 +23,10 @@ namespace backend.Models
         public int Current_Page { get; set; }
 
         [JsonPropertyName("next_url")]
-        public string Next_Url { get; set; }
+        public string? Next_Url { get; set; }
 
         [JsonPropertyName("prev_url")]
-        public string Prev_Url { get; set; }
+        public string? Prev_Url { get; set; }
     }
 
 }

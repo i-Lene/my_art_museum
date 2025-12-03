@@ -8,11 +8,11 @@ namespace backend.Controllers
     [Route("api/[controller]")]
 
 
-    public class MuseumDataController : ControllerBase
+    public class ArtworksDataController : ControllerBase
     {
         private readonly IArtworkService _artworkService;
 
-        public MuseumDataController(IArtworkService artworkService)
+        public ArtworksDataController(IArtworkService artworkService)
         {
             _artworkService = artworkService;
         }
@@ -62,9 +62,33 @@ namespace backend.Controllers
             }
         }
 
+        [HttpGet("artist/{artistId}")]
+        public async Task<IActionResult> GetArtworksByArtist(
+            [FromRoute] int artistId,
+            [FromQuery] int page = 1,
+            [FromQuery] int limit = 100)
+        {
+
+            try
+            {
+                var artworks = await _artworkService.GetArtworksByArtistAsync(artistId, page, limit);
+                return Ok(artworks);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, $"Internal server error: {ex.Message}");
+            }
+
+        }
+
+        [HttpGet("artist/{artistId}/search")]
+        public async Task<IActionResult> SearchArtworksByArtist(int artistId, [FromQuery] string q, int page = 1, int limit = 100)
+        {
+            var result = await _artworkService.SearchArtworksByArtistAsync(artistId, q, page, limit);
+            return Ok(result);
+        }
+
     }
-
 }
-
 
 

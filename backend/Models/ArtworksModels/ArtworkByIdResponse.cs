@@ -5,4 +5,6 @@ public class ArtworkByIdResponse
 {
     [JsonPropertyName("data")]
     public ArtworkData Data { get; set; }
+    public Config? Config { get; set; }
+
 }

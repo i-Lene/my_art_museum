@@ -13,7 +13,7 @@ namespace backend.Models
         public int Height { get; set; }
 
         [JsonPropertyName("alt_text")]
-        public string Alt_Text { get; set; }
+        public string? Alt_Text { get; set; }
     }
 
 }
